@@ -52,7 +52,7 @@ npm run build
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to leave any suggestions at the [Issues page](https://github.com/BenMukebo/front-end-test-helpjuice/issues)
+Feel free to leave any suggestions at the [Issues page](https://github.com/MICHAELKITH/Helpjuice-Front-End-Internship.git)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
