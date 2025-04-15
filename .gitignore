@@ -5,9 +5,7 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 
-# Build output
-build/
-dist/
+
 
 # Tailwind CSS output
 *.css.map
