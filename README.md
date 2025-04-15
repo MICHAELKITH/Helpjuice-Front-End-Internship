@@ -48,3 +48,12 @@ npx  postcss css/style.css -o build/style.css",
 # OR via npm scripts
 npm run build
 
+## Contributing <a name="contributing"></a>
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to leave any suggestions at the [Issues page](https://github.com/BenMukebo/front-end-test-helpjuice/issues)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
