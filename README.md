@@ -21,7 +21,7 @@ Recreate the design outlined in the provided Figma file into a functional, live 
 
 ## 🔗 Demo
 
-👉 [Live Preview (Vercel)]()
+👉 [Live Preview (render)](https://helpjuice-front-end-internship.onrender.com/)
 
 ---
 
