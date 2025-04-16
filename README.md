@@ -96,7 +96,21 @@ Follow these steps to set up the project locally:
 4.  **Open `index.html` in your browser** to view the prototype.
 
 ---
+## ✅ Example usage
 
+Typing `/1 Welcome` creates:
+
+```html
+<h1>Welcome</h1>
+```
+
+## ✅ Example usage
+
+Typing `/2 This is my project` creates:
+
+```html
+<h2>This is my project</h2>
+```
 ## 🤝 Contributing <a name="contributing"></a>
 
 Contributions, bug reports, and feature requests are highly appreciated!
