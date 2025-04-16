@@ -7,13 +7,26 @@ editorInput.addEventListener("keyup", (e) => {
   e.preventDefault();
   const value = e.target.value.trim();
 
-  if (!value) return;
+  if (!value.startsWith("/")) return;
+
+  const [command, ...textParts] = value.split(" ");
+  const headingLevel = command.slice(1); 
+  const headingText = textParts.join(" ").trim();
+
+  if (!headingText) return;
+
+  let headingTag;
+  if (["1", "2", "3"].includes(headingLevel)) {
+    headingTag = `h${headingLevel}`;
+  } else {
+    return; 
+  }
 
   const containerDiv = createContainerDiv();
   const burgerSvg = createBurgerSvg();
-  const h1 = createEditableH1(value);
+  const heading = createEditableHeading(headingTag, headingText);
 
-  containerDiv.append(burgerSvg, h1);
+  containerDiv.append(burgerSvg, heading);
   divContainer.appendChild(containerDiv);
 
   e.target.value = "";
@@ -26,41 +39,38 @@ function createContainerDiv() {
 }
 
 function createBurgerSvg() {
-  const burgerSvg = document.createElement("div");
-  burgerSvg.className = "w-5 -translate-y-1.5";
-  burgerSvg.innerHTML = `
-    <svg class="text-input-color" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-    </svg>
-  `;
-  return burgerSvg;
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("class", "w-5 h-5 text-gray-400");
+  svg.setAttribute("fill", "none");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("stroke-width", "1.5");
+  svg.setAttribute("stroke", "currentColor");
+
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("stroke-linecap", "round");
+  path.setAttribute("stroke-linejoin", "round");
+  path.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+
+  svg.appendChild(path);
+  return svg;
 }
 
-function createEditableH1(value) {
-  const h1 = document.createElement("h1");
-  h1.className = "text-3xl font-bold capitalize";
-  h1.contentEditable = true;
-  h1.style.border = "none";
-  h1.style.outline = "none";
-  h1.innerText = value;
+function createEditableHeading(tag, text) {
+  const heading = document.createElement(tag);
+  heading.textContent = text;
+  heading.setAttribute("contenteditable", "true");
 
-  h1.addEventListener("keydown", (e) => handleH1Keydown(e));
-  return h1;
-}
+  switch (tag) {
+    case "h1":
+      heading.className = "text-4xl font-bold";
+      break;
+    case "h2":
+      heading.className = "text-2xl font-normal";
+      break;
+    case "h3":
+      heading.className = "text-xl font-light";
+      break;
+  }
 
-function handleH1Keydown(e) {
-  if (e.key !== "Enter") return;
-
-  e.preventDefault();
-  moveCursorToEnd(e.target);
-  editorInput.focus();
-}
-
-function moveCursorToEnd(element) {
-  const selection = window.getSelection();
-  const range = document.createRange();
-  range.selectNodeContents(element);
-  range.collapse(false);
-  selection.removeAllRanges();
-  selection.addRange(range);
+  return heading;
 }
